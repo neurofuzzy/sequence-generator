@@ -1,7 +1,7 @@
 {
   "name": "sequence-generator",
   "version": "1.0.0",
-  "description": "A library for generating sequences of numbers using simple expressions",
+  "description": "Deterministic sequence generator for procedural content generation with a simple DSL",
   "type": "module",
   "main": "./dist/sequence-generator.cjs",
   "module": "./dist/sequence-generator.js",
@@ -33,8 +33,33 @@
     "playground": "npm run build && vite playground",
     "prepublishOnly": "npm run build"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Geoff Gaudreault",
+  "license": "MIT",
+  "keywords": [
+    "sequence",
+    "generator",
+    "procedural",
+    "deterministic",
+    "random",
+    "prng",
+    "seeded",
+    "generative",
+    "dsl",
+    "phyllotaxis",
+    "l-system",
+    "accumulator",
+    "reproducible",
+    "procedural-generation",
+    "generative-art"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neurofuzzy/sequence-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/neurofuzzy/sequence-generator/issues"
+  },
+  "homepage": "https://github.com/neurofuzzy/sequence-generator#readme",
   "devDependencies": {
     "@types/node": "^25.0.3",
     "@vitest/coverage-v8": "^2.1.8",

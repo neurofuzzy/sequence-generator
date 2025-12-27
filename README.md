@@ -263,4 +263,4 @@ npm run examples   # Run example demos
 
 ## License
 
-ISC
+MIT
