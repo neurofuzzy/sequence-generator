@@ -1,5 +1,5 @@
 {
-  "name": "sequence-generator",
+  "name": "@neurofuzzy/sequence-generator",
   "version": "1.0.0",
   "description": "Deterministic sequence generator for procedural content generation with a simple DSL",
   "type": "module",
