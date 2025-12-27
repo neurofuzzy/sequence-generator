@@ -49,13 +49,13 @@ The key insight: instead of scattering `Math.random()` calls everywhere, you def
 ## Installation
 
 ```bash
-npm install sequence-generator
+npm install @neurofuzzy/sequence-generator
 ```
 
 ## Quick Start
 
 ```typescript
-import { Sequence } from 'sequence-generator';
+import { Sequence } from '@neurofuzzy/sequence-generator';
 
 // Define a repeating sequence
 Sequence.fromStatement('REPEAT 10,20,30 AS mySeq');
