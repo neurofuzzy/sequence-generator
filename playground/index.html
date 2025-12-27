@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sequence Generator Playground</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1><img src="./logo.svg" alt="" width="24" height="24"> Sequence Generator</h1>
+      <p class="subtitle">Interactive playground for deterministic sequence generation</p>
+    </header>
+
+    <div class="controls">
+      <div class="control-group">
+        <label for="preset">Preset:</label>
+        <select id="preset">
+          <option value="">-- Select a preset --</option>
+          <optgroup label="Sequence Types">
+            <option value="repeat">REPEAT - Cycling</option>
+            <option value="yoyo">YOYO - Bounce</option>
+            <option value="shuffle">SHUFFLE - Random Order</option>
+            <option value="random">RANDOM - Reshuffle Each Cycle</option>
+            <option value="binary">BINARY - Tree Branching</option>
+          </optgroup>
+          <optgroup label="Accumulators">
+            <option value="add">ADD - Running Sum</option>
+            <option value="multiply">MULTIPLY - Exponential</option>
+            <option value="log2">LOG2 - Organic Growth</option>
+            <option value="phyllotaxis">🌻 Phyllotaxis Spiral</option>
+          </optgroup>
+          <optgroup label="Color Palettes">
+            <option value="colors">🎨 Mixed Palette</option>
+            <option value="warmColors">🔥 Warm Colors</option>
+            <option value="coolColors">❄️ Cool Colors</option>
+          </optgroup>
+          <optgroup label="Advanced">
+            <option value="compose">Composition - Nested Sequences</option>
+            <option value="skyline">🏙️ Skyline</option>
+            <option value="flexrow">📊 Flexrow Grid</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="control-group">
+        <label for="seed">Seed:</label>
+        <input type="number" id="seed" value="42" min="0">
+        <button id="randomize">🎲 Randomize</button>
+      </div>
+      <div class="control-group">
+        <label for="count">Values:</label>
+        <input type="number" id="count" value="20" min="1" max="100">
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="input-panel">
+        <h2>DSL Input</h2>
+        <textarea id="dsl" placeholder="Enter sequence definitions...
+Example:
+REPEAT 1,2,3,4,5 AS nums"></textarea>
+        <div class="resolve-section">
+          <label for="resolve">Resolve:</label>
+          <input type="text" id="resolve" placeholder="nums()" value="nums()">
+        </div>
+        <button id="run">▶ Generate</button>
+      </div>
+
+      <div class="output-panel">
+        <h2>Output</h2>
+        <div id="output" class="output-values"></div>
+        <div id="timeline" class="timeline"></div>
+      </div>
+    </div>
+
+    <div class="info">
+      <p>
+        <a href="https://github.com/neurofuzzy/sequence-generator" target="_blank">GitHub</a> •
+        <a href="https://www.npmjs.com/package/sequence-generator" target="_blank">npm</a>
+      </p>
+    </div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+
+</html>

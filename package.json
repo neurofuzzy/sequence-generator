@@ -30,6 +30,7 @@
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
     "examples": "npx tsx src/examples.ts",
+    "playground": "npm run build && vite playground",
     "prepublishOnly": "npm run build"
   },
   "author": "",
