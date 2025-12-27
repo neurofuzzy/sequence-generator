@@ -1,4 +1,4 @@
-import * as arbit from "arbit";
+import arbit from "arbit";
 
 class SequenceReference {
   seq: Sequence;
@@ -388,7 +388,7 @@ export class Sequence {
     // Look for SEED parameter after AS alias
     let seedIndex = -1;
     let asIndex = -1;
-    
+
     // Find AS and SEED keywords
     for (let i = 0; i < tokens.length; i++) {
       if (tokens[i] === Sequence.AS && i + 1 < tokens.length) {
@@ -399,7 +399,7 @@ export class Sequence {
         break;
       }
     }
-    
+
     // Extract SEED value if found
     if (seedIndex !== -1 && seedIndex + 1 < tokens.length) {
       const seedValue = parseInt(tokens[seedIndex + 1]);
@@ -407,7 +407,7 @@ export class Sequence {
         sequenceSeed = seedValue;
       }
     }
-    
+
     // Create sequence with the determined seed
     const seq = new Sequence(
       values,
@@ -417,13 +417,13 @@ export class Sequence {
       sequenceSeed,
       binaryLength,
     );
-    
+
     // Extract alias
     if (asIndex !== -1 && asIndex + 1 < tokens.length) {
       // Get alias, stopping at SEED keyword if present
       const aliasEndIndex = seedIndex !== -1 ? seedIndex : tokens.length;
       alias = tokens[asIndex + 1];
-      
+
       // Handle case where there might be accumulator between AS and SEED
       if (asIndex + 2 < aliasEndIndex && Sequence.accumulators.indexOf(tokens[asIndex + 2]) === -1) {
         // If next token is not an accumulator, it might be part of alias or something else
@@ -432,7 +432,7 @@ export class Sequence {
     } else {
       alias = stmt.split(" ").join("_");
     }
-    
+
     if (alias && !Sequence.sequences[alias]) {
       alias = Sequence.normalizeAlias(alias);
       Sequence.sequences[alias] = seq;

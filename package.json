@@ -1,14 +1,47 @@
 {
   "name": "sequence-generator",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "A library for generating sequences of numbers using simple expressions",
+  "type": "module",
+  "main": "./dist/sequence-generator.cjs",
+  "module": "./dist/sequence-generator.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/sequence-generator.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/sequence-generator.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build && tsc --emitDeclarationOnly",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "prepublishOnly": "npm run build"
   },
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "arbit": "^0.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "@vitest/coverage-v8": "^2.1.8",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.6",
+    "vite-plugin-dts": "^4.4.0",
+    "vitest": "^2.1.8"
   }
 }
