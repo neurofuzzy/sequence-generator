@@ -15,8 +15,22 @@ A powerful, deterministic sequence generator for procedural content generation. 
 - 🔄 **Multiple sequence types** - ONCE, REPEAT, YOYO, SHUFFLE, RANDOM, REVERSE, BINARY
 - ➕ **Accumulators** - ADD, SUBTRACT, MULTIPLY, DIVIDE, LOG, LOG2, LOG10, POW
 - 🔗 **Composable** - Sequences can reference other sequences
-- 📐 **Expression support** - Arithmetic operations on sequence values
+- 📐 **Expression support** - Safe expression evaluator (no eval!)
 - 🎯 **Simple DSL** - Human-readable sequence definitions
+- 📦 **Zero dependencies** - Fully self-contained
+
+## Try It
+
+🎮 **[Interactive Playground](playground/)** - Experiment with sequences, see live output, and explore presets including:
+- Color palettes with visual swatches
+- Phyllotaxis spirals (golden angle + LOG accumulators)
+- Procedural skylines and flex grids
+- All sequence types and accumulators
+
+Run locally:
+```bash
+npm run playground
+```
 
 ## What's This For?
 
