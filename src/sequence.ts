@@ -1,4 +1,5 @@
 import arbit from "arbit";
+import { safeEvaluate } from "./evaluate";
 
 class SequenceReference {
   seq: Sequence;
@@ -194,7 +195,7 @@ export class Sequence {
           : this._currentValue.seq.next();
       }
       if (this._currentValue.expressions.length) {
-        out = eval(`${out} ${this._currentValue.expressions.join(" ")}`);
+        out = safeEvaluate(`${out} ${this._currentValue.expressions.join(" ")}`);
       }
     } else if (typeof this._currentValue === "number") {
       out = this._currentValue;
@@ -670,6 +671,6 @@ export class Sequence {
         return seq.next() || 0;
       }
     });
-    return +eval(res.join(""));
+    return safeEvaluate(res.join(""));
   }
 }
