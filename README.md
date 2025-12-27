@@ -5,6 +5,10 @@ A powerful, deterministic sequence generator for procedural content generation. 
 [![npm version](https://badge.fury.io/js/sequence-generator.svg)](https://www.npmjs.com/package/sequence-generator)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
 
+<p align="center">
+  <img src="etc/hero.svg" alt="Sequence Generator" width="600">
+</p>
+
 ## Features
 
 - 🎲 **Deterministic randomness** - Seeded PRNG for reproducible results
@@ -13,6 +17,18 @@ A powerful, deterministic sequence generator for procedural content generation. 
 - 🔗 **Composable** - Sequences can reference other sequences
 - 📐 **Expression support** - Arithmetic operations on sequence values
 - 🎯 **Simple DSL** - Human-readable sequence definitions
+
+## What's This For?
+
+**Procedural generation** that needs to be reproducible. If you're building:
+
+- 🏙️ **Generative art** — randomize colors, sizes, rotations with a seed you can share
+- 🌳 **L-systems & trees** — binary branching patterns that unfold deterministically  
+- 🎮 **Game worlds** — procedural cities, terrain, or item placement
+- ✨ **Animations** — cycling values, yo-yo effects, logarithmic easing
+- 🎨 **Design tools** — pattern fills, color palettes, spacing variations
+
+The key insight: instead of scattering `Math.random()` calls everywhere, you define named sequences once and reference them by name. Change the seed, get a completely different (but reproducible) output.
 
 ## Installation
 

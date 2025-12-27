@@ -1,4 +1,4 @@
-import arbit from "arbit";
+import { createPRNG } from "./prng";
 import { safeEvaluate } from "./evaluate";
 
 class SequenceReference {
@@ -44,7 +44,7 @@ export class Sequence {
   };
   static random = () => {
     if (!Sequence.__prng === null) {
-      Sequence.__prng = arbit(Sequence.seed);
+      Sequence.__prng = createPRNG(Sequence.seed);
     } else {
       return Sequence.__prng?.();
     }
@@ -57,7 +57,7 @@ export class Sequence {
     seed: number = NaN,
     skipSequences: (Sequence | null | undefined)[] = [],
   ) => {
-    Sequence.__prng = arbit(!isNaN(seed) ? seed : Sequence.seed);
+    Sequence.__prng = createPRNG(!isNaN(seed) ? seed : Sequence.seed);
     for (let alias in Sequence.sequences) {
       alias = Sequence.normalizeAlias(alias);
       if (skipSequences.indexOf(Sequence.sequences[alias]) !== -1) {
@@ -161,7 +161,7 @@ export class Sequence {
     this._firstPick = true;
     this._seed = seed || Sequence.seed;
     this._binaryLength = binaryLength || 1;
-    this._prng = arbit(this._seed);
+    this._prng = createPRNG(this._seed);
     this.started = false;
     this.done = false;
   }
@@ -178,7 +178,7 @@ export class Sequence {
     this._iterations = 0;
     this._firstPick = true;
     this._usedValues = [];
-    this._prng = arbit(this._seed);
+    this._prng = createPRNG(this._seed);
     this.started = false;
     this.done = false;
   }
