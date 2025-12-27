@@ -1,6 +1,6 @@
 {
   "name": "@neurofuzzy/sequence-generator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Deterministic sequence generator for procedural content generation with a simple DSL",
   "type": "module",
   "main": "./dist/sequence-generator.cjs",
