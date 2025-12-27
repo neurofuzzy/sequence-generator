@@ -6,7 +6,7 @@ A powerful, deterministic sequence generator for procedural content generation. 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/neurofuzzy/sequence-generator/tree/main/playground)
 
-<p align="center">
+<p>
   <img src="etc/hero.svg" alt="Sequence Generator" width="300">
 </p>
 
