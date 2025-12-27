@@ -1,4 +1,4 @@
-import { Sequence } from '../dist/sequence-generator.js';
+import { Sequence } from '@neurofuzzy/sequence-generator';
 
 // Preset examples
 const PRESETS = {
