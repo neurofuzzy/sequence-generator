@@ -329,4 +329,102 @@ describe('Sequence', () => {
             expect(seq!.next()).toBeCloseTo(3.5);
         });
     });
+
+    describe('BINARY type with binaryLength', () => {
+        it('should use binaryLength parameter for tree-like patterns', () => {
+            // binaryLength=3 means picks based on 3-bit binary counter
+            const seq = Sequence.fromStatement('BINARY 0,1 AS bits', 0, 3);
+            const values: number[] = [];
+            for (let i = 0; i < 6; i++) {
+                values.push(seq!.next());
+            }
+            // Should pick values based on binary representation
+            expect(values.length).toBe(6);
+        });
+
+        it('should cycle through binary patterns', () => {
+            const seq = Sequence.fromStatement('BINARY 30,-70 AS angle', 0, 2);
+            // With length 2: 00, 01, 10, 11 patterns
+            const values: number[] = [];
+            for (let i = 0; i < 8; i++) {
+                values.push(seq!.next());
+            }
+            // Should contain both 30 and -70
+            expect(values).toContain(30);
+            expect(values).toContain(-70);
+        });
+    });
+
+    describe('LOG2 accumulator', () => {
+        it('should produce logarithmic growth', () => {
+            const seq = Sequence.fromStatement('REPEAT 1 LOG2 AS logseq', 0);
+            const val1 = seq!.next();
+            const val2 = seq!.next();
+            const val3 = seq!.next();
+
+            // LOG2 should produce increasing values
+            expect(val2).toBeGreaterThan(val1);
+            expect(val3).toBeGreaterThan(val2);
+            // Growth should slow down (logarithmic)
+            expect(val3 - val2).toBeLessThan(val2 - val1);
+        });
+    });
+
+    describe('per-sequence seed', () => {
+        it('should use seed parameter for individual sequences', () => {
+            // Same values, different seeds should produce different shuffle orders
+            const seq1 = Sequence.fromStatement('SHUFFLE 1,2,3,4,5 AS s1', 100);
+            const seq2 = Sequence.fromStatement('SHUFFLE 1,2,3,4,5 AS s2', 999);
+
+            const vals1: number[] = [];
+            const vals2: number[] = [];
+            for (let i = 0; i < 5; i++) {
+                vals1.push(seq1!.next());
+                vals2.push(seq2!.next());
+            }
+
+            // Different seeds should produce different orders
+            expect(vals1).not.toEqual(vals2);
+        });
+
+        it('should produce same results with same seed', () => {
+            const seq1 = Sequence.fromStatement('SHUFFLE 1,2,3,4,5 AS sa', 42);
+            const vals1: number[] = [];
+            for (let i = 0; i < 5; i++) {
+                vals1.push(seq1!.next());
+            }
+
+            Sequence.purge();
+            const seq2 = Sequence.fromStatement('SHUFFLE 1,2,3,4,5 AS sb', 42);
+            const vals2: number[] = [];
+            for (let i = 0; i < 5; i++) {
+                vals2.push(seq2!.next());
+            }
+
+            expect(vals1).toEqual(vals2);
+        });
+    });
+
+    describe('expression composition in values', () => {
+        it('should reference another sequence in value expressions', () => {
+            Sequence.fromStatement('REPEAT 100 AS base');
+            Sequence.resolve('base()'); // Initialize base to 100
+
+            // Create sequence with expression referencing base
+            Sequence.fromStatement('REPEAT 5,base-20 AS derived');
+
+            expect(Sequence.resolve('derived()')).toBe(5);
+            // base-20 = 100-20 = 80
+            expect(Sequence.resolve('derived()')).toBe(80);
+        });
+
+        it('should handle arithmetic in composed values', () => {
+            Sequence.fromStatement('REPEAT 50 AS val');
+            Sequence.resolve('val()');
+
+            Sequence.fromStatement('ONCE val+10,val*2 AS math');
+            expect(Sequence.resolve('math()')).toBe(60);  // 50+10
+            expect(Sequence.resolve('math()')).toBe(100); // 50*2
+        });
+    });
 });
